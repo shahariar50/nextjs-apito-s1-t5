@@ -1,10 +1,18 @@
+import { useState } from "react";
+import Rodal from "rodal";
+
 const FeaturesSection = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <section>
+    <section id="featureSection">
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <div className="card bg-dark text-white py-4 py-sm-0">
+            <div
+              className="card bg-dark text-white py-4 py-sm-0"
+              style={{ cursor: "pointer" }}
+            >
               <picture>
                 <img
                   className="w-100"
@@ -14,7 +22,12 @@ const FeaturesSection = () => {
               </picture>
               <div className="card-img-overlay bg-dark-gradient d-flex flex-column flex-center">
                 <picture>
-                  <img src="/img/icons/play.png" width="80" alt="play" />
+                  <img
+                    src="/img/icons/play.png"
+                    width="80"
+                    alt="play"
+                    onClick={() => setIsOpen(true)}
+                  />
                 </picture>
                 <h5 className="text-primary">FASTEST DELIVERY</h5>
                 <p className="text-center">
@@ -24,18 +37,17 @@ const FeaturesSection = () => {
                   <br className="d-none d-sm-block" />
                   is our first priority.
                 </p>
-                <a
-                  className="stretched-link"
-                  href="#"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                ></a>
-                <div
-                  className="modal fade"
-                  id="exampleModal"
-                  tabIndex={-1}
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
+                <Rodal
+                  visible={isOpen}
+                  onClose={() => setIsOpen(false)}
+                  customStyles={{
+                    maxWidth: "800px",
+                    width: "100%",
+                    padding: "0",
+                    height: "min-content",
+                    backgroundColor: "transparent",
+                    boxShadow: "none",
+                  }}
                 >
                   <div className="modal-dialog modal-lg modal-dialog-centered">
                     <div className="modal-content overflow-hidden">
@@ -55,14 +67,14 @@ const FeaturesSection = () => {
                         <button
                           className="btn btn-primary"
                           type="button"
-                          data-bs-dismiss="modal"
+                          onClick={() => setIsOpen(false)}
                         >
                           Close
                         </button>
                       </div>
                     </div>
                   </div>
-                </div>
+                </Rodal>
               </div>
             </div>
           </div>
